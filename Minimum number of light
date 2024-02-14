@@ -1,0 +1,33 @@
+
+public class Main
+{
+    public static int minfountains(int[] fountains){
+        int n=fountains.length;
+        int [] coverage=new int[n];
+        for(int i=0;i<n;i++){
+            coverage[i]=Math.max(i-fountains[i]+1,1);
+        }
+        int [] dp=new int[n];
+        int count=0;
+        int f=0;
+        for(int i=0;i<n;)
+        {
+            int rightmost=coverage[i];
+            while(i<n&&i<rightmost){
+            rightmost=Math.max(coverage[i],rightmost); 
+            i++;
+            }
+            count++;
+            if(i<n){
+                f=rightmost;
+            }
+            
+        }
+        return count;
+    }
+    
+	public static void main(String[] args) {
+	    int [] fountains={2,0,0,0,0,0};
+		System.out.println("Minimum Fountains: "+minfountains(fountains));
+	}
+}
