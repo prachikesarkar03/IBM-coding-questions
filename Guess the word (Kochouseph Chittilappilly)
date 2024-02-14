@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class GuessTheWord {
+    public static void main(String[] args) {
+        // Sample words displayed by the computer
+        String[] words = {"apple", "banana", "orange", "strawberry", "kiwi", "pineapple"};
+
+        // Call the function to choose the word
+        String chosenWord = chooseWord(words);
+
+        // Display the chosen word
+        if (chosenWord.equals("")) {
+            System.out.println("Better luck next time!");
+        } else {
+            System.out.println("Chosen word: " + chosenWord);
+        }
+    }
+
+    public static String chooseWord(String[] words) {
+        List<String> oddLengthWords = new ArrayList<>();
+
+        // Check if there are odd-length words
+        for (String word : words) {
+            if (word.length() % 2 != 0) {
+                oddLengthWords.add(word);
+            }
+        }
+
+        // If there are no odd-length words, return an empty string
+        if (oddLengthWords.isEmpty()) {
+            return "";
+        }
+
+        // Find the longest odd-length word
+        String longestOddLengthWord = "";
+        for (String word : oddLengthWords) {
+            if (word.length() > longestOddLengthWord.length()) {
+                longestOddLengthWord = word;
+            }
+        }
+
+        return longestOddLengthWord;
+    }
+}
