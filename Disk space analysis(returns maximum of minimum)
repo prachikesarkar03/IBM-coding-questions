@@ -1,0 +1,30 @@
+public class Main {
+    public static int maxOfMinSubarrays(int[] nums, int k) {
+        int n = nums.length;
+        int maxOfMins = Integer.MIN_VALUE;
+
+        for (int left = 0, right = 0; right < n; right++) {
+            // If the window size exceeds k, slide the window to the right
+            if (right - left + 1 > k) {
+                left++;
+            }
+
+            // Calculate the minimum value within the current window
+            int min = Integer.MAX_VALUE;
+            for (int i = left; i <= right; i++) {
+                min = Math.min(min, nums[i]);
+            }
+
+            // Update the maximum of the minimum values encountered so far
+            maxOfMins = Math.max(maxOfMins, min);
+        }
+
+        return maxOfMins;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 5, 4, 6, 8};
+        int k = 3;
+        System.out.println("Maximum of minimums: " + maxOfMinSubarrays(nums, k));
+    }
+}
