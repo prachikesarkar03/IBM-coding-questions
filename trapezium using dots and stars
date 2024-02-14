@@ -1,0 +1,31 @@
+public class Main {
+    public static void main(String[] args) {
+        int height = 5; // Change this value to adjust the height of the trapezium
+        
+        // Loop for the upper part of the trapezium
+        for (int i = 0; i < height; i++) {
+            // Print leading dots
+            for (int j = 0; j < height - i - 1; j++) {
+                System.out.print(".");
+            }
+            // Print stars
+            for (int j = 0; j < 2 * i + 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println(); // Move to the next line
+        }
+        
+        // Loop for the lower part of the trapezium (rectangle)
+        for (int i = 0; i < height; i++) {
+            // Print leading dots
+            for (int j = 0; j < i; j++) {
+                System.out.print(".");
+            }
+            // Print stars
+            for (int j = 0; j < 2 * (height - i) - 1; j++) {
+                System.out.print("*");
+            }
+            System.out.println(); // Move to the next line
+        }
+    }
+}
