@@ -1,0 +1,29 @@
+public class Main{
+    public static int findMinimumCoins(int[] coinsCollected, int[] coinsSpent) {
+        int currentCoins = 0;
+        int minStartingCoins = 0;
+
+        for (int i = 0; i < coinsCollected.length; i++) {
+            currentCoins += coinsCollected[i]; // Collect coins
+            currentCoins -= coinsSpent[i]; // Spend coins to move to the next level
+
+            if (currentCoins < 1) {
+                // If at any point Raman has less than one coin, he loses the game
+                // Reset the currentCoins count and update minStartingCoins
+                minStartingCoins += 1 - currentCoins;
+                currentCoins = 1;
+            }
+        }
+
+        return minStartingCoins;
+    }
+
+    public static void main(String[] args) {
+        // Example: coins collected and coins spent in each level of the game
+        int[] coinsCollected = {3, 2, 5, 1};
+        int[] coinsSpent = {2, 1, 3, 2};
+
+        int minStartingCoins = findMinimumCoins(coinsCollected, coinsSpent);
+        System.out.println("Minimum starting coins needed: " + minStartingCoins);
+    }
+}
