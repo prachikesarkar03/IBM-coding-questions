@@ -1,0 +1,28 @@
+class Main{
+    public static int largestRepackagedPacketSize(int[] packets) {
+        int maxPowerOfTwo = -1;
+        int remaining = 0;
+
+        for (int packetSize : packets) {
+            // Check if packetSize is a power of 2
+            if ((packetSize & (packetSize - 1)) == 0) {
+                maxPowerOfTwo = packetSize;
+            } else {
+                // Find the next power of 2 greater than packetSize
+                int nextPowerOfTwo = Integer.highestOneBit(packetSize) << 1;
+                remaining += nextPowerOfTwo - packetSize;
+                if (remaining >= maxPowerOfTwo) {
+                    maxPowerOfTwo = remaining;
+                }
+            }
+        }
+
+        return maxPowerOfTwo;
+    }
+
+    public static void main(String[] args) {
+        int[] packets = {5, 7, 10, 3, 6};
+        int largestRepackagedPacket = largestRepackagedPacketSize(packets);
+        System.out.println("Largest repackaged packet size: " + largestRepackagedPacket);
+    }
+}
