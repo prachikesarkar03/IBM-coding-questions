@@ -1,0 +1,65 @@
+//using java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static char minOccurringChar(String s) {
+        // Initialize a HashMap to count the occurrences of characters
+        Map<Character, Integer> charCount = new HashMap<>();
+
+        // Iterate over the string to count the occurrences of each character
+        for (char c : s.toCharArray()) {
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }
+
+        // Find the character with the minimum count
+        char minChar = Character.MAX_VALUE;
+        int minCount = Integer.MAX_VALUE;
+        for (char c : s.toCharArray()) {
+            if (charCount.get(c) < minCount) {
+                minChar = c;
+                minCount = charCount.get(c);
+            } else if (charCount.get(c) == minCount) {
+                // If there is a tie, return the character that appears first in the string
+                minChar = (char) Math.min(minChar, c);
+            }
+        }
+
+        return minChar;
+    }
+
+    public static void main(String[] args) {
+        String s = "abbccd";
+        char minChar = minOccurringChar(s);
+        System.out.println("Character with the minimum occurrences: " + minChar);
+    }
+}
+
+//using python
+def min_occuring_char(s):
+    # Initialize a dictionary to count the occurrences of characters
+    char_count = {}
+    
+    # Iterate over the string to count the occurrences of each character
+    for char in s:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+    
+    # Find the character with the minimum count
+    min_char = None
+    min_count = float('inf')
+    for char, count in char_count.items():
+        if count < min_count:
+            min_char = char
+            min_count = count
+        elif count == min_count:
+            # If there is a tie, return the character that appears first in the string
+            min_char = min(min_char, char)
+    
+    return min_char
+
+# Example usage:
+string = "abbccd"
+print("Character with the minimum occurrences:", min_occuring_char(string))
